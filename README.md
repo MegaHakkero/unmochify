@@ -9,4 +9,6 @@ It'll output a flash file ready to be played / edited using ffdec. I personally 
 
 Run the program w/o any arguments to see how to use it, it's really simple ;3
 
-Compile with `g++ -Wall -std=c++11 -lz -Iinclude -o unmochify`
+Compile with `g++ -Wall -std=c++11 -lz -Iinclude decrypt.cpp main.cpp -o unmochify`
+
+oh yeah you might wanna change `infbuflen` in decrypt.cpp if you have a game that's bigger than 128M, I was really lazy and uhh fuck off
