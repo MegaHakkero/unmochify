@@ -52,10 +52,10 @@ std::vector<uint8_t> decrypt(std::vector<uint8_t>& p) {
 		dec[k] = (uint8_t) (dec[k] ^ S[(u + v) & 255]);
 	}
 	// decompress all at once
-	std::vector<uint8_t> inflated(128000000);
-	uint64_t infbuflen = 128000000; // 128M all at once in memory eugh
-	std::printf("deflating\n");
-	int32_t inflate_ret = uncompress(inflated.data(), &infbuflen, dec.data(), dec.size());
+	std::vector<uint8_t> inflated(128000000); // 128M all at once in memory eugh
+	uint64_t infsize = inflated.capacity();
+	std::printf("inflating\n");
+	int32_t inflate_ret = uncompress(inflated.data(), &infsize, dec.data(), dec.size());
 	if (inflate_ret != Z_OK)
 		throw std::runtime_error("zlib uncompress() failed: " + __zlib_err(inflate_ret));
 	return inflated;
